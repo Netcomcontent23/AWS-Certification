@@ -3,6 +3,7 @@
 ![What the Future of Azure Work Looks Like After Coronavirus (56)](https://user-images.githubusercontent.com/97124802/158589017-c8cb3396-f418-4f47-a20c-e528d7585f5d.jpg)
 
 
+
 ## Introduction
 
 As you may recall from my previous 2020 blog post, one of my new goals is to become skilled in using AWS, Azure, and GCP data services. Finding patterns and detecting discrepancies is one of the process’ building components. And before completing the exercise for BigTable (GCP) and DynamoDB (AWS), I felt both were practically the same. You can't fathom how completely incorrect I was with this assumption!
@@ -15,7 +16,9 @@ Let's start with the architecture itself, or at least what we can deduce from th
 The operational overhead is also affected by serverless vs. server-based differences. It would help if you provisioned your infrastructure for BigTable, whereas you may utilize DynamoDB's auto-scaling feature to adapt the throughput to the current workload. But don't get me wrong: I'm not a snob. BigTable can also be scaled! The difference is that you'll have to create your scaling application and have it run in response to metrics like CPU or request throughput that are monitoring.
 
 However, scaling isn't the only issue we may address in this architecture-related part. Another one concerns replication and, more broadly, availability. Data storage is on SSDs duplicated over many zones within a single region via DynamoDB. It also includes bespoke, on-demand backups and continuous backups to enable Point-In-Time Recovery (PITR) - you can travel back in time up to 35 days!
-In the case of BigTable, replication is explicit, which means you must declare whether you want it or not. However, it allows you more freedom because you may delegate the load to a single cluster using application profiles. Also, the backups aren't precisely the same. Because they're stored in the group and bound to the cluster's lifecycle if the cluster zone goes down, so does the backup, and there is no option to export backups to another location (e.g., GCS). It doesn't happen with DynamoDB's PITR feature, which preserves the most recent backup for 35 days after deleting the table. However, the distinction is due to a conceptual difference: BigTable is a container of tables, whereas DynamoDB is a single table.
+In the case of BigTable, replication is explicit, which means you must declare whether you want it or not. However, it allows you more freedom because you may delegate the load to a single cluster using application profiles. Also, the backups aren't precisely the same. Because they're stored in the group and bound to the cluster's lifecycle if the cluster zone goes down, so does the backup, and there is no option to export backups to another location (e.g., GCS). It doesn't happen with DynamoDB's PITR feature, which preserves the most recent backup for 35 days after deleting the table. However, the distinction is due to a conceptual difference: BigTable is a container of tables, whereas DynamoDB is a single table. amazon dynamodb vs google bigtable
+
+
 
 ## Storage of data
 
