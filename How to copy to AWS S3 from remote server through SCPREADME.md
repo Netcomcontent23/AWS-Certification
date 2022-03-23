@@ -2,7 +2,9 @@
 
 ### Introduction
 
-This article will demonstrate how to copy files straight from a remote server to S3 without first copying them to your local machine.
+This article will demonstrate how to copy files straight from a remote server to S3 without first copying them to your local machine.and amazon s3 scp
+
+
 scp->remote server->s3 from bastion host Know more about [developer associate training]
 
 [//]: # (Any comments) 
